@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DarInterview</string>
+
+    <string name="search">Поиск</string>
+    <string name="temperature_x">Температура %1$.1f °C</string>
+    <string name="load_error">Не удалось загрузить данные!</string>
+</resources>
