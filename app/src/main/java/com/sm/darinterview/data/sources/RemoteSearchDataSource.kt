@@ -19,24 +19,27 @@ class RemoteSearchDataSource @Inject constructor(
 ): SearchDataSource {
     override suspend fun getCityWeatherList(term: String): List<City> {
         return withContext(Dispatchers.IO) {
-            val list = mutableListOf<City>()
-            val placesResult = placesApi.getCityPredictions(term)
-            placesResult?.predictions?.let {
-                db.searches().insertItem(Search(term, it, Date().time))
-                /*
-                * Sequential flow
-                * */
-                it.forEach {
-                    try {
-                        val weatherResult = weatherApi.getWeather(it)
-                        weatherResult?.let {
-                            list.add(it)
-                            db.cities().insertItem(it)
-                        }
-                    } catch (ignored: Exception){}
+            supervisorScope {
+                val list = mutableListOf<City>()
+                val placesResult = placesApi.getCityPredictions(term)
+                placesResult?.predictions?.let {
+                    db.searches().insertItem(Search(term, it, Date().time))
+                    val deferredList = ArrayList<Deferred<*>>()
+                    it.forEach {
+                        deferredList.add( async {
+                            try {
+                                val weatherResult = weatherApi.getWeather(it)
+                                weatherResult?.let {
+                                    list.add(it)
+                                    db.cities().insertItem(it)
+                                }
+                            } catch (ignored: Exception){}
+                        })
+                    }
+                    deferredList.joinAll()
                 }
+                list
             }
-            list
         }
     }
 }
