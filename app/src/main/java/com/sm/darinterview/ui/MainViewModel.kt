@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.sm.darinterview.data.SearchRepository
 import com.sm.darinterview.ui.base.Empty
@@ -25,6 +26,10 @@ class MainViewModel @ViewModelInject constructor(
 ): ViewModel(){
 
     val queryChannel = BroadcastChannel<String>(Channel.CONFLATED)
+
+    init {
+        preferences.getString(QUERY, "")?.let { viewModelScope.launch { queryChannel.send(it) } }
+    }
 
     val results = queryChannel.asFlow().debounce(SEARCH_DELAY_MS).mapLatest {
         preferences.edit().putString(QUERY, it).apply()

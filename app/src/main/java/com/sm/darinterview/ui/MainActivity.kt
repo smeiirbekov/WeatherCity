@@ -32,9 +32,6 @@ class MainActivity: AppCompatActivity() {
 
         preferences.getString(QUERY, "")?.let {
             binding.etSearch.setText(it)
-            lifecycleScope.launch {
-                viewModel.queryChannel.send(it)
-            }
         }
 
         val searchAdapter = WeatherAdapter()
@@ -42,18 +39,20 @@ class MainActivity: AppCompatActivity() {
 
 
         binding.etSearch.doAfterTextChanged {
-            lifecycleScope.launch {
-                viewModel.queryChannel.send(it.toString())
-            }
+            lifecycleScope.launch { viewModel.queryChannel.send(it.toString()) }
         }
 
         viewModel.results.observe(this, {
-            if (it is Success) {
-                searchAdapter.submitList(it.data)
-            } else if (it is Empty) {
-                searchAdapter.submitList(null)
-            } else {
-                Toast.makeText(this, R.string.load_error, Toast.LENGTH_SHORT ).show()
+            when (it) {
+                is Success -> {
+                    searchAdapter.submitList(it.data)
+                }
+                is Empty -> {
+                    searchAdapter.submitList(null)
+                }
+                else -> {
+                    Toast.makeText(this, R.string.load_error, Toast.LENGTH_SHORT ).show()
+                }
             }
         })
     }

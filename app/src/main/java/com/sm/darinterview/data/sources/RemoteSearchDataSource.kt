@@ -7,6 +7,8 @@ import com.sm.darinterview.data.models.Search
 import com.sm.darinterview.di.PlacesApi
 import com.sm.darinterview.di.WeatherApi
 import kotlinx.coroutines.*
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import timber.log.Timber
 import java.lang.Exception
 import java.util.*
@@ -21,6 +23,7 @@ class RemoteSearchDataSource @Inject constructor(
         return withContext(Dispatchers.IO) {
             supervisorScope {
                 val list = mutableListOf<City>()
+                val mutex = Mutex()
                 val placesResult = placesApi.getCityPredictions(term)
                 placesResult?.predictions?.let {
                     db.searches().insertItem(Search(term, it, Date().time))
@@ -30,8 +33,10 @@ class RemoteSearchDataSource @Inject constructor(
                             try {
                                 val weatherResult = weatherApi.getWeather(it)
                                 weatherResult?.let {
-                                    list.add(it)
-                                    db.cities().insertItem(it)
+                                    mutex.withLock {
+                                        list.add(it)
+                                        db.cities().insertItem(it)
+                                    }
                                 }
                             } catch (ignored: Exception){}
                         })
