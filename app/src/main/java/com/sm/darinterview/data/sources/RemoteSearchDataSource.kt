@@ -25,20 +25,22 @@ class RemoteSearchDataSource @Inject constructor(
                 val list = mutableListOf<City>()
                 val mutex = Mutex()
                 val placesResult = placesApi.getCityPredictions(term)
-                placesResult?.predictions?.let {
-                    db.searches().insertItem(Search(term, it, Date().time))
+                placesResult?.predictions?.let { predictions ->
+                    db.searches().insertItem(Search(term, predictions, Date().time))
                     val deferredList = ArrayList<Deferred<*>>()
-                    it.forEach {
+                    predictions.forEach { prediction ->
                         deferredList.add( async {
                             try {
-                                val weatherResult = weatherApi.getWeather(it)
-                                weatherResult?.let {
+                                val weatherResult = weatherApi.getWeather(prediction)
+                                weatherResult?.let { city ->
                                     mutex.withLock {
-                                        list.add(it)
-                                        db.cities().insertItem(it)
+                                        list.add(city)
+                                        db.cities().insertItem(city)
                                     }
                                 }
                             } catch (ignored: Exception){}
+                            // Exception server: nothing found
+                            // Exception connection error
                         })
                     }
                     deferredList.joinAll()

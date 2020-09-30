@@ -33,18 +33,19 @@ class SearchRepository @Inject constructor(
     }
 
     override suspend fun getCityWeatherList(term: String): List<City>? {
-        var list: List<City>? = null
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
+            var list: List<City>? = null
             try {
                 local.getCityWeatherList(term)?.let {
                     list = it
                 }
             } catch (ignored: Exception){}
+            // Exception Db: nothing found
             if (list.isNullOrEmpty()) {
                 list = remote.getCityWeatherList(term)
             }
+            list
         }
-        return list
     }
 
 }

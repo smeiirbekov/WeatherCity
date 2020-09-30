@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09bbb967-e65e-4178-a98f-63a96dec34c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/ui/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/ui/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/ui/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/data/SearchRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/data/SearchRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/data/sources/RemoteSearchDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sm/darinterview/data/sources/RemoteSearchDataSource.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_4_API_23" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -123,21 +119,21 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="328" y="135" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.800@0.0.1280.800" timestamp="1601243741518" />
-    <state width="1238" height="323" key="GridCell.Tab.0.bottom" timestamp="1601245409386">
+    <state width="1238" height="320" key="GridCell.Tab.0.bottom" timestamp="1601382365257">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="323" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1601245409386" />
-    <state width="1238" height="323" key="GridCell.Tab.0.center" timestamp="1601245409384">
+    <state width="1238" height="320" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1601382365257" />
+    <state width="1238" height="320" key="GridCell.Tab.0.center" timestamp="1601382365252">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="323" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1601245409384" />
-    <state width="1238" height="323" key="GridCell.Tab.0.left" timestamp="1601245409383">
+    <state width="1238" height="320" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1601382365252" />
+    <state width="1238" height="320" key="GridCell.Tab.0.left" timestamp="1601382365251">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="323" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1601245409383" />
-    <state width="1238" height="323" key="GridCell.Tab.0.right" timestamp="1601245409385">
+    <state width="1238" height="320" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1601382365251" />
+    <state width="1238" height="320" key="GridCell.Tab.0.right" timestamp="1601382365253">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="323" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1601245409385" />
+    <state width="1238" height="320" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1601382365253" />
   </component>
 </project>
